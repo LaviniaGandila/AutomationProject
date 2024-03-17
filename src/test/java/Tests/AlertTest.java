@@ -22,9 +22,6 @@ public class AlertTest extends SharedData {
 
     @Test
     public void windowMethod () {
-//        ElementMethods elementMethods = new ElementMethods(getWebDriver());
-//        AlertMethods alertMethods = new AlertMethods(getWebDriver());
-
         HomePage homePage = new HomePage(getWebDriver());
         homePage.navigateToAlertFrameWindowPage();
 
@@ -42,21 +39,15 @@ public class AlertTest extends SharedData {
 //        elementMethods.clickElement(buttonAlerts);
 //        alertMethods.acceptAlert();
 //
-//
-//
-//
-//
 //        WebElement buttonAlertsDelay = getWebDriver().findElement(By.id("timerAlertButton"));
 //        elementMethods.clickElement(buttonAlertsDelay);
 //        alertMethods.waitForAlert();
 //        //wait explicit
 //        alertMethods.acceptAlert();
 //
-//
 //        WebElement thirdAlertButton = getWebDriver().findElement(By.id("confirmButton"));
 //        elementMethods.clickElement(thirdAlertButton);
 //        alertMethods.cancelAlert();
-//
 //
 //        WebElement buttonPrompt = getWebDriver().findElement(By.id("promtButton"));
 //        elementMethods.clickElement(buttonPrompt);
@@ -67,7 +58,6 @@ public class AlertTest extends SharedData {
 //
 //        WebElement thirdAlertResult = getWebDriver().findElement(By.xpath("//span[@id='confirmResult']"));
 //        elementMethods.validateExpectedElement(thirdAlertResult,"You selected Cancel" );
-//
 //
 //        WebElement fourthAlertResult = getWebDriver().findElement(By.xpath("//span[@id='promptResult']"));
 //        elementMethods.validateExpectedElement(fourthAlertResult,"You entered " + textToSend );
