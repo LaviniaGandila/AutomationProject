@@ -13,14 +13,31 @@ public class HomePage extends BasePage {
         super(webDriver);
     }
 
-    @FindBy(className = "fc-button-label")
-    private WebElement consentField;
+//    @FindBy(className = "fc-button-label")
+//    private WebElement consentField;
     @FindBy(xpath = "//h5[text()='Alerts, Frame & Windows']")
     private WebElement alertFrameWindowsField;
 
+    @FindBy(xpath = "//h5[text()='Forms']")
+    private WebElement formsField;
+
+    @FindBy(xpath = "//h5[text()='Elements']")
+    private WebElement elementsField;
+
     public void navigateToAlertFrameWindowPage () {
-    elementMethods.scrollElementByPixel(0, 450);
-    elementMethods.clickElement(consentField);
-    elementMethods.clickElement(alertFrameWindowsField);
+        elementMethods.scrollElementByPixel(0, 450);
+//        elementMethods.clickElement(consentField);
+        elementMethods.clickElement(alertFrameWindowsField);
+        }
+
+    public void navigateToFormsPage() {
+        elementMethods.scrollElementByPixel(0, 450);
+        elementMethods.clickElement(formsField);
     }
+
+    public void navigateToElementsPage() {
+        elementMethods.scrollElementByPixel(0, 450);
+        elementMethods.clickElement(elementsField);
+    }
+
 }
