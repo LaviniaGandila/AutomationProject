@@ -1,6 +1,7 @@
 package Tests;
 
 import HelperMethods.ElementMethods;
+import Pages.ElementsPage;
 import Pages.HomePage;
 import Pages.WebTablePage;
 import SharedData.SharedData;
@@ -19,7 +20,23 @@ public class WebTableTest extends SharedData {
         HomePage homePage = new HomePage(getWebDriver());
         homePage.navigateToElementsPage();
 
+        ElementsPage elementsPage = new ElementsPage(getWebDriver());
+        elementsPage.navigateToWebTablePage();
 
+
+        String firstNameValue = "Laura";
+        String lastNameValue = "LastName";
+        String userEmailValue = "laura@yahoo.com";
+        String ageValue = "110";
+        String salaryValue = "1100";
+        String departmentValue = "Happiness";
+        String firstNameModifyValue = "Vlad";
+        String userAgeModifyValue = "29";
+
+        WebTablePage webTablePage = new WebTablePage(getWebDriver());
+        webTablePage.addNewEntry(firstNameValue, lastNameValue, userEmailValue, ageValue, salaryValue, departmentValue);
+        webTablePage.modifyEntry(firstNameModifyValue, userAgeModifyValue);
+        webTablePage.deleteEntry();
 
 
         //identificam un element
@@ -31,17 +48,6 @@ public class WebTableTest extends SharedData {
 
 //        WebElement webTablesField = getWebDriver().findElement(By.xpath("//span[text()='Web Tables']"));
 //        elementMethods.clickElement(webTablesField);
-
-        String firstNameValue = "Laura";
-        String lastNameValue = "LastName";
-        String userEmailValue = "laura@yahoo.com";
-        String ageValue = "110";
-        String salaryValue = "1100";
-        String departmentValue = "Happiness";
-
-        WebTablePage webTablePage = new WebTablePage(getWebDriver());
-        webTablePage.addNewEntry(firstNameValue, lastNameValue, userEmailValue, ageValue, salaryValue, departmentValue);
-
 //        WebElement addButton = getWebDriver().findElement(By.id("addNewRecordButton"));
 //        elementMethods.clickElement(addButton);
 //

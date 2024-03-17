@@ -35,6 +35,12 @@ public class WebTablePage extends BasePage{
     @FindBy (id ="submit")
     private WebElement submitButton;
 
+    @FindBy (id ="edit-record-4")
+    private WebElement editButton;
+
+    @FindBy (id="delete-record-4")
+    private WebElement deleteButton;
+
     public void addNewEntry (String firstNameValue, String lastNameValue, String userEmailValue, String ageValue,
                              String salaryValue, String departmentValue) {
         addButton.click();
@@ -45,5 +51,16 @@ public class WebTablePage extends BasePage{
         elementMethods.fillElement(salaryField, salaryValue);
         elementMethods.fillElement(departmentField, departmentValue);
         submitButton.click();
+    }
+
+    public void modifyEntry (String firstNameModifyValue, String userAgeModifyValue) {
+        elementMethods.clickElement(editButton);
+        elementMethods.refillElement(firstNameField, firstNameModifyValue);
+        elementMethods.refillElement(ageField, userAgeModifyValue);
+        submitButton.click();
+    }
+
+    public void deleteEntry () {
+        deleteButton.click();
     }
 }
