@@ -1,6 +1,7 @@
 package Tests;
 
 import Pages.FormsPage;
+import Pages.HomePage;
 import Pages.PracticeFormPage;
 import SharedData.SharedData;
 import org.testng.annotations.Test;
@@ -12,14 +13,11 @@ public class PracticeFormTest extends SharedData {
 
     @Test
     public void metodaTest () {
-
         HomePage homePage = new HomePage(getWebDriver());
-        homePage.navigateToFormsPage();
+        homePage.navigateToElementsPage();
 
         FormsPage formsPage = new FormsPage(getWebDriver());
         formsPage.navigateToFormsPage();
-
-
 
 
         String firstNameWebFormsValue = "Bogdan";

@@ -2,6 +2,7 @@ package Tests;
 
 import Pages.AlertPage;
 import Pages.AlertWindowFramePage;
+import Pages.HomePage;
 import SharedData.SharedData;
 import org.testng.annotations.Test;
 
