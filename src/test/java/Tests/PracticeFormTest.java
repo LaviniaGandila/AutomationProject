@@ -14,10 +14,10 @@ public class PracticeFormTest extends SharedData {
     @Test
     public void metodaTest () {
         HomePage homePage = new HomePage(getWebDriver());
-        homePage.navigateToElementsPage();
+        homePage.navigateToFormsPage();
 
         FormsPage formsPage = new FormsPage(getWebDriver());
-        formsPage.navigateToFormsPage();
+        formsPage.navigateToPracticeFormsPage();
 
 
         String firstNameWebFormsValue = "Bogdan";

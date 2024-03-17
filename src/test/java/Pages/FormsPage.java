@@ -10,12 +10,10 @@ public class FormsPage extends BasePage{
     }
 
     @FindBy(xpath = "//span[text()='Practice Form']")
-    private WebElement webForms;
+    private WebElement practiceFormField;
 
-    public void navigateToFormsPage () {
-        elementMethods.scrollElementByPixel(0, 450);
-        elementMethods.clickElement(webForms);
-
+    public void navigateToPracticeFormsPage () {
+        elementMethods.clickElement(practiceFormField);
     }
 
 }
