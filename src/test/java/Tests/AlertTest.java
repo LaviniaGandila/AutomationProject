@@ -1,22 +1,9 @@
 package Tests;
 
-import HelperMethods.AlertMethods;
-import HelperMethods.ElementMethods;
-import HelperMethods.WindowMethods;
 import Pages.AlertPage;
 import Pages.AlertWindowFramePage;
-import Pages.HomePage;
 import SharedData.SharedData;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AlertTest extends SharedData {
 

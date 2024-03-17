@@ -1,18 +1,10 @@
 package Tests;
 
-import HelperMethods.ElementMethods;
 import Pages.FormsPage;
-import Pages.HomePage;
 import Pages.PracticeFormPage;
 import SharedData.SharedData;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
