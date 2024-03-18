@@ -14,9 +14,8 @@ public class HomePage extends BasePage {
         super(webDriver);
     }
 
-    //    @FindBy(className = "fc-button-label")
+//    @FindBy(className = "fc-button-label")
 //    private WebElement consentField;
-
 
     @FindBy(xpath = "//h5[text()='Elements']")
     private WebElement elementsField;

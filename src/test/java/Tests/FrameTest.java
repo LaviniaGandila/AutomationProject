@@ -13,14 +13,12 @@ public class FrameTest extends SharedData {
 
     @Test
     public void windowMethod () {
-        ElementMethods elementMethods = new ElementMethods(getWebDriver());
-        FrameMethods frameMethods = new FrameMethods(getWebDriver());
-        WindowMethods windowMethods = new WindowMethods(getWebDriver());
-
-        AlertWindowFramePage alertWindowFramePage= new AlertWindowFramePage(getWebDriver());
 
         HomePage homePage = new HomePage(getWebDriver());
         homePage.navigateToAlertFrameWindowPage();
+
+        AlertWindowFramePage alertWindowFramePage= new AlertWindowFramePage(getWebDriver());
+        alertWindowFramePage.navigateToFramePage();
 
         FramePage framePage = new FramePage(getWebDriver());
         framePage.dealWithIframe();
