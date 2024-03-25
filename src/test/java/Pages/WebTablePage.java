@@ -1,5 +1,6 @@
 package Pages;
 
+import ObjectData.WebTableObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,22 +42,21 @@ public class WebTablePage extends BasePage{
     @FindBy (id="delete-record-4")
     private WebElement deleteButton;
 
-    public void addNewEntry (String firstNameValue, String lastNameValue, String userEmailValue, String ageValue,
-                             String salaryValue, String departmentValue) {
+    public void addNewEntry (WebTableObject webTableObject) {
         addButton.click();
-        elementMethods.fillElement(firstNameField, firstNameValue);
-        elementMethods.fillElement(lastNameField, lastNameValue);
-        elementMethods.fillElement(userEmailField, userEmailValue);
-        elementMethods.fillElement(ageField, ageValue);
-        elementMethods.fillElement(salaryField, salaryValue);
-        elementMethods.fillElement(departmentField, departmentValue);
+        elementMethods.fillElement(firstNameField, webTableObject.getFirstNameValue());
+        elementMethods.fillElement(lastNameField, webTableObject.getLastNameValue());
+        elementMethods.fillElement(userEmailField, webTableObject.getUserEmailValue());
+        elementMethods.fillElement(ageField, webTableObject.getAgeValue());
+        elementMethods.fillElement(salaryField, webTableObject.getSalaryValue());
+        elementMethods.fillElement(departmentField, webTableObject.getDepartmentValue());
         submitButton.click();
     }
 
-    public void modifyEntry (String firstNameModifyValue, String userAgeModifyValue) {
+    public void modifyEntry (WebTableObject webTableObject) {
         elementMethods.clickElement(editButton);
-        elementMethods.refillElement(firstNameField, firstNameModifyValue);
-        elementMethods.refillElement(ageField, userAgeModifyValue);
+        elementMethods.refillElement(firstNameField, webTableObject.getFirstNameValue());
+        elementMethods.refillElement(ageField, webTableObject.getAgeValue());
         submitButton.click();
     }
 
