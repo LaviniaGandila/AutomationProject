@@ -1,5 +1,6 @@
 package Pages;
 
+import ObjectData.AlertObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,10 +46,10 @@ public class AlertPage extends BasePage {
         elementMethods.validateExpectedElement(thirdAlertResult,"You selected Cancel");
     }
 
-    public void dealWithPromptButton (String text) {
+    public void dealWithPromptButton (AlertObject alertObject) {
         elementMethods.clickElement(buttonPrompt);
-        alertMethods.fillAlert(text);
-        elementMethods.validateExpectedElement(fourthAlertResult,"You entered " + text );
+        alertMethods.fillAlert(alertObject.getInputAlert());
+        elementMethods.validateExpectedElement(fourthAlertResult,"You entered " + alertObject.getInputAlert());
     }
 
 }

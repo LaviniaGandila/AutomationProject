@@ -1,8 +1,11 @@
 package Tests;
 
+import ObjectData.AlertObject;
+import ObjectData.PracticeFormObject;
 import Pages.AlertPage;
 import Pages.AlertWindowFramePage;
 import Pages.HomePage;
+import PropertyUtility.PropertyUtility;
 import SharedData.SharedData;
 import org.testng.annotations.Test;
 
@@ -10,6 +13,9 @@ public class AlertTest extends SharedData {
 
     @Test
     public void windowMethod () {
+        PropertyUtility propertyUtility = new PropertyUtility("AlertTestData");
+        AlertObject alertObject = new AlertObject(propertyUtility.getAllData());
+
         HomePage homePage = new HomePage(getWebDriver());
         homePage.navigateToAlertFrameWindowPage();
 
@@ -17,10 +23,11 @@ public class AlertTest extends SharedData {
         alertWindowFramePage.navigateToAlertPage();
 
         AlertPage alertPage = new AlertPage(getWebDriver());
+
         alertPage.dealWithAcceptAlert();
         alertPage.dealWithDelayAlert();
-        alertPage.dealWithPromptButton("test");
         alertPage.dealWithCancelButton();
+        alertPage.dealWithPromptButton(alertObject);
 
 //
 //        WebElement buttonAlerts = getWebDriver().findElement(By.id("alertButton"));

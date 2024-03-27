@@ -40,6 +40,11 @@ public class ElementMethods {
         Assert.assertEquals(actual, expected);
     }
 
+        public void validateElementTextSpecial(WebElement element, String text){
+        Assert.assertTrue(element.getText().contains(text));
+    }
+
+
     public void printElementText (WebElement element) {
         waitVisibleElement(element);
         System.out.println(element.getText());
@@ -74,7 +79,7 @@ public class ElementMethods {
     }
 
     public void clickElemForce (WebElement element){
-        waitVisibleElement(element);
+        //waitVisibleElement(element);
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("arguments[0].click();",element);
     }

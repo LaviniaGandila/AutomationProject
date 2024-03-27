@@ -1,13 +1,17 @@
 package Pages;
 
+import ObjectData.PracticeFormObject;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+
 import java.io.File;
 import java.util.List;
+
+
 
 public class PracticeFormPage extends BasePage{
     public PracticeFormPage (WebDriver webDriver) {
@@ -40,7 +44,7 @@ public class PracticeFormPage extends BasePage{
     private WebElement yearOfBirth;
 
     @FindBy(xpath = "//div[not (contains (@class,'react-datepicker__day--outside-month')) and contains(@class,'react-datepicker__day react-datepicker__day')]")
-    private List<WebElement> dayOfBirthField;
+    private List<WebElement> dayOfBirth;
 
     @FindBy(xpath = "//div[@id='hobbiesWrapper']//label[@class='custom-control-label']")
     private List<WebElement> HobbiesList;
@@ -70,10 +74,10 @@ public class PracticeFormPage extends BasePage{
     private WebElement submitButton2;
 
     @FindBy(xpath = "//table/tbody/tr/td[1]")
-    private List<WebElement> labelFields;
+    private List<WebElement> rowsLabel;
 
     @FindBy(xpath = "//table/tbody/tr/td[2]")
-    private List<WebElement> labelValues;
+    private List<WebElement> rowsValue;
 
 
 
@@ -88,7 +92,7 @@ public class PracticeFormPage extends BasePage{
         elementMethods.fillElement(lastNameWebFormsField, lastNameWebFormsValue);
     }
 
-    public void fillEmailValue (String userEmailWebFormsValue) {
+    public void fillEmail(String userEmailWebFormsValue) {
        elementMethods.fillElement(userEmailWebFormsField, userEmailWebFormsValue);
     }
 
@@ -96,18 +100,18 @@ public class PracticeFormPage extends BasePage{
         elementMethods.clickElement(genderField);
     }
 
-    public void fillMobileValue (String userMobileValue) {
+    public void fillMobile(String userMobileValue) {
         elementMethods.fillElement(userMobileField, userMobileValue);
     }
 
-    public void pickBirthDayDate (String monthValue, String yearValue, String dayValue) {
-        elementMethods.clickElement(dateOfBirth);
+    public void pickBirthDayDate (String dayValue, String monthValue, String yearValue) {
+        elementMethods.clickElemForce(dateOfBirth);
         elementMethods.selectTextElement(monthOfBirth, monthValue);
-        elementMethods.selectValueElement(yearOfBirth, yearValue);
+        elementMethods.selectTextElement(yearOfBirth, yearValue);
 
-        for (Integer i = 0; i < dayOfBirthField.size(); i++) {
-            if (dayOfBirthField.get(i).getText().equals(dayValue)) {
-                dayOfBirthField.get(i).click();
+        for (Integer i = 0; i < dayOfBirth.size(); i++) {
+            if (dayOfBirth.get(i).getText().equals(dayValue)) {
+                dayOfBirth.get(i).click();
                 break;
             }
         }
@@ -131,13 +135,13 @@ public class PracticeFormPage extends BasePage{
         elementMethods.fillElement(pictureField, new File(filePath).getAbsolutePath());
     }
 
-    public void pickAdress (String currentAddressValue) {
+    public void fillAdress(String currentAddressValue) {
         elementMethods.fillElement(currentAddressField, currentAddressValue);
     }
 
- public void pickState (String stateValue) {
-     elementMethods.clickElemForce(selectState);
-     elementMethods.fillPressElement(stateInput, stateValue, Keys.ENTER);
+    public void pickState (String stateValue) {
+        elementMethods.clickElemForce(selectState);
+        elementMethods.fillPressElement(stateInput, stateValue, Keys.ENTER);
   }
 
     public void pickCity (String cityValue) {
@@ -149,47 +153,74 @@ public class PracticeFormPage extends BasePage{
     }
 
 
-    public void validatePracticeFormTable (String firstNameWebFormsValue, String lastNameWebFormsValue, String userEmailWebFormsValue, String genderValue,
-                                          String userMobileValue, String dateOfBirthFinal, String SubjectValue,
-                                           List<String> hobbies, String filePath, String currentAddressValue, String StateValue, String CityValue) {
+    public void fillEntireForm(PracticeFormObject practiceFormObject) {
+        fillFirstName(practiceFormObject.getFirstNameValue());
+        fillLastName(practiceFormObject.getLastNameValue());
+        fillEmail(practiceFormObject.getUserEmailValue());
+        pickGender(practiceFormObject.getGenderValue());
+        fillMobile(practiceFormObject.getUserMobileValue());
+        pickBirthDayDate(practiceFormObject.getDobDayValue(), practiceFormObject.getDobMonthValue(),
+                practiceFormObject.getDobYearValue());
+        pickHobbies(practiceFormObject.getHobbies());
+        uploadPicture(practiceFormObject.getFilePath());
+        fillAdress(practiceFormObject.getCurrentAddressValue());
+        pickSubjects(practiceFormObject.getSubjectValue());
+        pickState(practiceFormObject.getStateValue());
+        pickCity(practiceFormObject.getCityValue());
+        clickSubmit();
+    }
 
-        Assert.assertEquals(labelFields.get(0).getText(), "Student Name");
-        Assert.assertEquals(labelValues.get(0).getText(), firstNameWebFormsValue + " " + lastNameWebFormsValue);
+    public void validatePracticeFormTable (PracticeFormObject practiceFormObject) {
 
-        Assert.assertEquals(labelFields.get(1).getText(), "Student Email");
-        Assert.assertEquals(labelValues.get(1).getText(), userEmailWebFormsValue);
+        elementMethods.validateExpectedElement(rowsLabel.get(0), "Student Name");
+        elementMethods.validateExpectedElement(rowsValue.get(0), practiceFormObject.getFirstNameValue() + " "
+                + practiceFormObject.getLastNameValue());
 
-        Assert.assertEquals(labelFields.get(2).getText(), "Gender");
-        Assert.assertEquals(labelValues.get(2).getText(), genderValue);
+        //1 validate student email
+        elementMethods.validateExpectedElement(rowsLabel.get(1), "Student Email");
+        elementMethods.validateExpectedElement(rowsValue.get(1), practiceFormObject.getUserEmailValue());
 
-        Assert.assertEquals(labelFields.get(3).getText(), "Mobile");
-        Assert.assertEquals(labelValues.get(3).getText(), userMobileValue);
+        //2 validate gender
+        elementMethods.validateExpectedElement(rowsLabel.get(2), "Gender");
+        elementMethods.validateExpectedElement(rowsValue.get(2), practiceFormObject.getGenderValue());
 
-        Assert.assertEquals(labelFields.get(4).getText(), "Date of Birth");
-        Assert.assertEquals(labelValues.get(4).getText(), dateOfBirthFinal);
+        //3 validate mobile
+        elementMethods.validateExpectedElement(rowsLabel.get(3), "Mobile");
+        elementMethods.validateExpectedElement(rowsValue.get(3), practiceFormObject.getUserMobileValue());
 
-        Assert.assertEquals(labelFields.get(5).getText(), "Subjects");
-        Assert.assertEquals(labelValues.get(5).getText(), SubjectValue);
+        //4 validate date of birth
+        String dobDayValueFormatted;
+        if (Integer.parseInt(practiceFormObject.getDobDayValue()) >= 1 && Integer.parseInt(practiceFormObject.getDobDayValue()) <= 9) {
+            dobDayValueFormatted = "0" + practiceFormObject.getDobDayValue();
+        } else {
+            dobDayValueFormatted = practiceFormObject.getDobDayValue();
+        }
+        elementMethods.validateExpectedElement(rowsLabel.get(4), "Date of Birth");
+        elementMethods.validateExpectedElement(rowsValue.get(4), dobDayValueFormatted + " " + practiceFormObject.getDobMonthValue() + ","
+                + practiceFormObject.getDobYearValue());
 
-        Assert.assertEquals(labelFields.get(6).getText(), "Hobbies");
-        for (Integer index = 0; index<hobbies.size(); index++) {
-            Assert.assertTrue(labelValues.get(6).getText().contains(hobbies.get(index)));
+        //5 validate subjects
+        elementMethods.validateExpectedElement(rowsLabel.get(5), "Subjects");
+        elementMethods.validateExpectedElement(rowsValue.get(5), practiceFormObject.getSubjectValue());
+
+        //6 validate hobbies
+        elementMethods.validateExpectedElement(rowsLabel.get(6), "Hobbies");
+        for (String hobby : practiceFormObject.getHobbies()) {
+            elementMethods.validateElementTextSpecial(rowsValue.get(6),hobby);
         }
 
-        Assert.assertEquals(labelFields.get(7).getText(), "Picture");
-        String[] ArrayFile = filePath.split("/");
-        Integer DesiredIndex = ArrayFile.length-1;
-        Assert.assertEquals(labelValues.get(7).getText(), ArrayFile[DesiredIndex]);
+        //7 validate picture
+        elementMethods.validateExpectedElement(rowsLabel.get(7), "Picture");
+        String[] arrayFileName = practiceFormObject.getFilePath().split("/");
+        Integer desireIndex = arrayFileName.length - 1;
+        elementMethods.validateExpectedElement(rowsValue.get(7),arrayFileName[desireIndex]);
 
+        //8 validate address
+        elementMethods.validateExpectedElement(rowsLabel.get(8), "Address");
+        elementMethods.validateExpectedElement(rowsValue.get(8), practiceFormObject.getCurrentAddressValue());
 
-        Assert.assertEquals(labelFields.get(8).getText(), "Address");
-        Assert.assertEquals(labelValues.get(8).getText(), currentAddressValue);
-
-        Assert.assertEquals(labelFields.get(9).getText(), "State and City");
-        Assert.assertEquals(labelValues.get(9).getText(), StateValue + " " + CityValue);
-
-
-//        WebElement closeButton = webDriver.findElement(By.id("closeLargeModal"));
-//        js.executeScript("arguments[0].click();", closeButton);
+        //9 validate state and city
+        elementMethods.validateExpectedElement(rowsLabel.get(9), "State and City");
+        elementMethods.validateExpectedElement(rowsValue.get(9), practiceFormObject.getStateValue() + " " + practiceFormObject.getCityValue());
     }
 }
