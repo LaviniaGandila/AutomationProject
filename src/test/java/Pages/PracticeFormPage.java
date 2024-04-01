@@ -105,7 +105,8 @@ public class PracticeFormPage extends BasePage{
     }
 
     public void pickBirthDayDate (String dayValue, String monthValue, String yearValue) {
-        elementMethods.clickElemForce(dateOfBirth);
+        elementMethods.scrollElementByPixel(0,250);
+        elementMethods.clickElement(dateOfBirth);
         elementMethods.selectTextElement(monthOfBirth, monthValue);
         elementMethods.selectTextElement(yearOfBirth, yearValue);
 
