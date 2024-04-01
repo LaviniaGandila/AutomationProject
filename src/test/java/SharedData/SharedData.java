@@ -16,12 +16,14 @@ public class SharedData {
         webDriver = new BrowserFactory().getBrowserInstance();
     }
 
+    public WebDriver getWebDriver() {
+        return webDriver;
+    }
+
     @AfterMethod
     public void clearDriver (){
         webDriver.quit();
     }
 
-    public WebDriver getWebDriver() {
-        return webDriver;
-    }
+
 }
