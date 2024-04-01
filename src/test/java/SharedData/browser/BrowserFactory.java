@@ -13,7 +13,7 @@ public class BrowserFactory {
          PropertyUtility propertyUtility = new PropertyUtility("aftData");
         Map<String, String> browserData = propertyUtility.getAllData();
         String cicd = System.getProperty("cicd");
-        String browser = System.getProperty("broser");
+        String browser = System.getProperty("browser");
         if (Boolean.parseBoolean(cicd)){
             browserData.put("headless", "--headless=new");
         }
