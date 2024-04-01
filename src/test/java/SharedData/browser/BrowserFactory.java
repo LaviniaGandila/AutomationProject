@@ -10,11 +10,11 @@ public class BrowserFactory {
     //aplicam design patternul "factory method" ca sa definim un obiect care sa primeasca o instanta diferita de browser
 
     public WebDriver getBrowserInstance () {
-         PropertyUtility propertyUtility = new PropertyUtility("aftData");
+         PropertyUtility propertyUtility = new PropertyUtility("atfData");
         Map<String, String> browserData = propertyUtility.getAllData();
-        String cicd = System.getProperty("cicd");
+        String cIcD = System.getProperty("cIcD");
         String browser = System.getProperty("browser");
-        if (Boolean.parseBoolean(cicd)){
+        if (Boolean.parseBoolean(cIcD)){
             browserData.put("headless", "--headless=new");
         }
         else {
