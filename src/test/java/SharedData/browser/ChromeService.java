@@ -35,7 +35,6 @@ public class ChromeService implements BrowserService {
         {
             chromeOptions.addArguments(testData.get("headless"));
         }
-
         return chromeOptions;
     }
 
