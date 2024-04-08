@@ -6,10 +6,10 @@ import HelperMethods.WindowMethods;
 import Pages.AlertWindowFramePage;
 import Pages.FramePage;
 import Pages.HomePage;
-import SharedData.SharedData;
+import SharedData.Hooks;
 import org.testng.annotations.Test;
 
-public class FrameTest extends SharedData {
+public class FrameTest extends SharedData.Hooks {
 
     @Test
     public void windowMethod () {
