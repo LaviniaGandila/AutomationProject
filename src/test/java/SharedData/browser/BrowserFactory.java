@@ -21,8 +21,6 @@ public class BrowserFactory {
             browser=browserData.get("browser");
         }
         //dupa ce am aflat pe ce environment trebuie sa rulez deschid browserul dorit
-        System.out.println("!!!!!");
-        System.out.println(browser);
         switch (browser){
 
             case "chrome":

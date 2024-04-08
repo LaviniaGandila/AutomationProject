@@ -26,7 +26,7 @@ public class AlertWindowFramePage extends BasePage{
 
     public void navigateToAlertPage () {
         elementMethods.scrollElementByPixel(0, 350);
-        LoggerUtility.infoTestCase("The user scrols down the page");
+        LoggerUtility.infoTestCase("The user scrolls down the page");
 
         elementMethods.clickElement(alertField);
         LoggerUtility.infoTestCase("The user clicks on alertField element");
@@ -34,7 +34,7 @@ public class AlertWindowFramePage extends BasePage{
 
     public void navigateToFramePage () {
         elementMethods.scrollElementByPixel(0, 350);
-        LoggerUtility.infoTestCase("The user scrols down the page");
+        LoggerUtility.infoTestCase("The user scrolls down the page");
 
         elementMethods.clickElement(framesField);
         LoggerUtility.infoTestCase("The user clicks on framesField element");

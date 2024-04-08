@@ -30,7 +30,7 @@ public class HomePage extends BasePage {
 
     public void navigateToElementsPage() {
         elementMethods.scrollElementByPixel(0, 450);
-        LoggerUtility.infoTestCase("The user scrols down the page");
+        LoggerUtility.infoTestCase("The user scrolls down the page");
 
         elementMethods.clickElement(elementsField);
         LoggerUtility.infoTestCase("The user clicks on elementsField element");
@@ -38,7 +38,7 @@ public class HomePage extends BasePage {
 
     public void navigateToFormsPage() {
         elementMethods.scrollElementByPixel(0, 450);
-        LoggerUtility.infoTestCase("The user scrols down the page");
+        LoggerUtility.infoTestCase("The user scrolls down the page");
 
         elementMethods.clickElement(formsField);
         LoggerUtility.infoTestCase("The user clicks on formsField element");
@@ -46,7 +46,7 @@ public class HomePage extends BasePage {
 
     public void navigateToAlertFrameWindowPage () {
         elementMethods.scrollElementByPixel(0, 450);
-        LoggerUtility.infoTestCase("The user scrols down the page");
+        LoggerUtility.infoTestCase("The user scrolls down the page");
 
 //        elementMethods.clickElement(consentField);
         elementMethods.clickElement(alertFrameWindowsField);
