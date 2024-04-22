@@ -1,5 +1,6 @@
 package Pages;
 
+import LoggerUtility.LoggerUtility;
 import ObjectData.PracticeFormObject;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -85,30 +86,40 @@ public class PracticeFormPage extends BasePage{
 
     public void fillFirstName (String firstNameWebFormsValue) {
         elementMethods.fillElement(firstNameWebFormsField, firstNameWebFormsValue);
+        LoggerUtility.infoTestCase("The user filled first name field");
         elementMethods.scrollElementByPixel(0, 450);
+        LoggerUtility.infoTestCase("The user scrolls down");
 }
 
     public void fillLastName (String lastNameWebFormsValue) {
         elementMethods.fillElement(lastNameWebFormsField, lastNameWebFormsValue);
+        LoggerUtility.infoTestCase("The user filled last name field");
     }
 
     public void fillEmail(String userEmailWebFormsValue) {
        elementMethods.fillElement(userEmailWebFormsField, userEmailWebFormsValue);
+        LoggerUtility.infoTestCase("The user filled email field");
     }
 
     public void pickGender (String genderValue){
         elementMethods.clickElement(genderField);
+        LoggerUtility.infoTestCase("The user selects the gender");
     }
 
     public void fillMobile(String userMobileValue) {
         elementMethods.fillElement(userMobileField, userMobileValue);
+        LoggerUtility.infoTestCase("The user filled mobile number field");
     }
 
     public void pickBirthDayDate (String dayValue, String monthValue, String yearValue) {
         elementMethods.scrollElementByPixel(0,250);
+        LoggerUtility.infoTestCase("The user scrolls down");
         elementMethods.clickElement(dateOfBirth);
+        LoggerUtility.infoTestCase("The user clicks on date picker");
         elementMethods.selectTextElement(monthOfBirth, monthValue);
+        LoggerUtility.infoTestCase("The user selects month");
         elementMethods.selectTextElement(yearOfBirth, yearValue);
+        LoggerUtility.infoTestCase("The user selects year");
 
         for (Integer i = 0; i < dayOfBirth.size(); i++) {
             if (dayOfBirth.get(i).getText().equals(dayValue)) {
@@ -126,31 +137,38 @@ public class PracticeFormPage extends BasePage{
                 elementMethods.clickElemForce(HobbiesList.get(index));
             }
         }
+        LoggerUtility.infoTestCase("The user selects hobbies");
     }
 
     public void pickSubjects (String subjectsValue) {
         elementMethods.fillPressElement(subjectsField, subjectsValue, Keys.ENTER);
+        LoggerUtility.infoTestCase("The user selects subject");
     }
 
     public void uploadPicture (String filePath) {
         elementMethods.fillElement(pictureField, new File(filePath).getAbsolutePath());
+        LoggerUtility.infoTestCase("The user uploads picture");
     }
 
     public void fillAdress(String currentAddressValue) {
         elementMethods.fillElement(currentAddressField, currentAddressValue);
+        LoggerUtility.infoTestCase("The user filled current address");
     }
 
     public void pickState (String stateValue) {
         elementMethods.clickElemForce(selectState);
         elementMethods.fillPressElement(stateInput, stateValue, Keys.ENTER);
+        LoggerUtility.infoTestCase("The user selects state");
   }
 
     public void pickCity (String cityValue) {
         elementMethods.fillPressElement(cityInput, cityValue, Keys.ENTER);
+        LoggerUtility.infoTestCase("The user selects city");
     }
 
     public void clickSubmit () {
         elementMethods.clickElemForce(submitButton2);
+        LoggerUtility.infoTestCase("The user clicks submit button");
     }
 
 
@@ -173,7 +191,48 @@ public class PracticeFormPage extends BasePage{
 
     public void validatePracticeFormTable (PracticeFormObject practiceFormObject) {
 
-        elementMethods.validateExpectedElement(rowsLabel.get(0), "Student Name");
+
+        Assert.assertEquals(rowsLabel.get(0).getText(), "Student Name");
+        Assert.assertEquals(rowsValue.get(0).getText(), practiceFormObject.getFirstNameValue() + " " + practiceFormObject.getLastNameValue());
+        LoggerUtility.infoTestCase("The user validates the first name and last name values");
+
+        Assert.assertEquals(rowsLabel.get(1).getText(), "Student Email");
+        Assert.assertEquals(rowsValue.get(1).getText(), practiceFormObject.getUserEmailValue());
+        LoggerUtility.infoTestCase("The user validates the email value");
+
+        Assert.assertEquals(rowsLabel.get(2).getText(), "Gender");
+        Assert.assertEquals(rowsValue.get(2).getText(), practiceFormObject.getGenderValue());
+        LoggerUtility.infoTestCase("The user validates the gender value");
+
+        Assert.assertEquals(rowsLabel.get(3).getText(), "Mobile");
+        Assert.assertEquals(rowsValue.get(3).getText(), practiceFormObject.getUserMobileValue());
+        LoggerUtility.infoTestCase("The user validates the mobile value");
+
+        Assert.assertEquals(rowsLabel.get(5).getText(), "Subjects");
+        Assert.assertEquals(rowsValue.get(5).getText(), practiceFormObject.getSubjectValue());
+        LoggerUtility.infoTestCase("The user validates the subject value");
+
+        Assert.assertEquals(rowsLabel.get(6).getText(), "Hobbies");
+        for (Integer index = 0; index < practiceFormObject.getHobbies().size(); index++) {
+            Assert.assertTrue(rowsValue.get(6).getText().contains(practiceFormObject.getHobbies().get(0)));
+            LoggerUtility.infoTestCase("The user validates the hobbies value");
+        }
+
+        Assert.assertEquals(rowsLabel.get(7).getText(), "Picture");
+        String[] arrayFile = practiceFormObject.getFilePath().split("/");
+        Integer desireIndex = arrayFile.length -1;
+        Assert.assertEquals(rowsValue.get(7).getText(), arrayFile[desireIndex]);
+        LoggerUtility.infoTestCase("The user validates the picture value");
+
+        Assert.assertEquals(rowsLabel.get(8).getText(), "Address");
+        Assert.assertEquals(rowsValue.get(8).getText(), practiceFormObject.getCurrentAddressValue());
+        LoggerUtility.infoTestCase("The user validates the address value");
+
+        Assert.assertEquals(rowsLabel.get(9).getText(), "State and City");
+        Assert.assertEquals(rowsValue.get(9).getText(), practiceFormObject.getStateValue() + " " + practiceFormObject.getCityValue());
+        LoggerUtility.infoTestCase("The user validates the state and city values");
+
+        /*elementMethods.validateExpectedElement(rowsLabel.get(0), "Student Name");
         elementMethods.validateExpectedElement(rowsValue.get(0), practiceFormObject.getFirstNameValue() + " "
                 + practiceFormObject.getLastNameValue());
 
@@ -223,5 +282,6 @@ public class PracticeFormPage extends BasePage{
         //9 validate state and city
         elementMethods.validateExpectedElement(rowsLabel.get(9), "State and City");
         elementMethods.validateExpectedElement(rowsValue.get(9), practiceFormObject.getStateValue() + " " + practiceFormObject.getCityValue());
+    */
     }
 }

@@ -1,5 +1,6 @@
 package Pages;
 
+import LoggerUtility.LoggerUtility;
 import ObjectData.WebTableObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -45,22 +46,34 @@ public class WebTablePage extends BasePage{
     public void addNewEntry (WebTableObject webTableObject) {
         addButton.click();
         elementMethods.fillElement(firstNameField, webTableObject.getFirstNameValue());
+        LoggerUtility.infoTestCase("The user add first name value");
         elementMethods.fillElement(lastNameField, webTableObject.getLastNameValue());
+        LoggerUtility.infoTestCase("The user add last name value");
         elementMethods.fillElement(userEmailField, webTableObject.getUserEmailValue());
+        LoggerUtility.infoTestCase("The user add email value");
         elementMethods.fillElement(ageField, webTableObject.getAgeValue());
+        LoggerUtility.infoTestCase("The user add age value");
         elementMethods.fillElement(salaryField, webTableObject.getSalaryValue());
+        LoggerUtility.infoTestCase("The user add salary value");
         elementMethods.fillElement(departmentField, webTableObject.getDepartmentValue());
+        LoggerUtility.infoTestCase("The user add department value");
         submitButton.click();
+        LoggerUtility.infoTestCase("The user clicks submit button");
     }
 
     public void modifyEntry (WebTableObject webTableObject) {
         elementMethods.clickElement(editButton);
+        LoggerUtility.infoTestCase("The user clicks edit button");
         elementMethods.refillElement(firstNameField, webTableObject.getFirstNameValue());
+        LoggerUtility.infoTestCase("The user add first name value");
         elementMethods.refillElement(ageField, webTableObject.getAgeValue());
+        LoggerUtility.infoTestCase("The user adds age value");
         submitButton.click();
+        LoggerUtility.infoTestCase("The user clicks submit button");
     }
 
     public void deleteEntry () {
         deleteButton.click();
+        LoggerUtility.infoTestCase("The user clicks delete button");
     }
 }
